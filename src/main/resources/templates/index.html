@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8">
+        <link href="@/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header" />
+        <div class="contenido">
+            <h2>Nuestros articulos</h2>
+        <div th:if="${articulos != null and !articulos.empty}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:each="item : ${articulos}"></td>
+                    <td th:text="${item.descripcion}"></td>
+                    <td th:text="${#numbers.formatDecimal(item.precio, 3, 2)}"></td>
+                    <td><a th:ref="@{/carrito/agregar}+${ietm.idArticulo}">Agregar</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        
+        <div th:if="${articulos == null or articulos.empty}">
+            La lista de articulos esta vacia
+            </div>
+            </div>
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>

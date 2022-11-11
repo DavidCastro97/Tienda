@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TechShop</title>
+        <meta charset="UTF-8">
+        <link href="@/css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header" />
+        <div class="contenido"><!-- comment -->
+            <h2> Listado de Clientes </h2><!-- comment -->
+            <a th:href="@{/cliente/nuevo}">Nuevo Cliente</a>
+        <div th:if="${clientes != null and !clientes.empty}">         
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Telefono</th>
+                        <th>Limite</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item: ${clientes}">
+                        <td th:text="${item.nombre}"></td>
+                        <td th:text="${item.apellidos}"></td>
+                        <td th:text="${item.correo}"></td>
+                        <td th:text="${item.telefono}"></td>
+                        <td th:text="${#numbers.formatDecimal(item.credito.limite, 3, 2)}"></td>
+                    <td><a th:ref="@{/cliente/modificar}+${ietm.idCliente}">Modificar</a></td>
+                    <td><a th:ref="@{/cliente/eliminar}+${ietm.idCliente}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+                    <div th:if="${clientes == null or clientes.empty}">
+            La lista de clientes esta vacia
+             </div>
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>
