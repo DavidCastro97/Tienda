@@ -9,7 +9,8 @@
         <header th:replace="layout/plantilla :: header" />
         <div class="contenido"><!-- comment -->
             <h2> Listado de Categorias </h2><!-- comment -->
-            <a th:href="@{/categoria/nuevo}">Nueva Categoria</a>
+            <a th:href="@{/categoria/nuevo}"
+               th:text"#{plantilla.categoria}">Nueva Categoria</a>
         <div th:if="${categorias != null and !categorias.empty}">         
             <table border="1">
                 <thead>

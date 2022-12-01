@@ -9,18 +9,18 @@
 <body>
         <header th:replace="layout/plantilla :: header" />
         <div class="contenido">
-            <h2>Listado de articulos</h2>
+            <h2 th:text="#{articulo.titulo}">Listado de articulos</h2>
             <a th:href="@{/articulo/nuevo}">Nuevo Articulo</a>
         <div th:if="${articulos != null and !articulos.empty}">
         <table border="1">
             <thead>
                 <tr>
-                    <th>Descripcion</th>
-                    <th>Precio</th>
-                    <th>Existencias</th>
-                    <th>Activo</th>
-                    <th>Modificar</th><!-- comment -->
-                    <th>Eliminar</th>
+                    <th th:text="#{articulo.descripcion}">Descripcion</th>
+                    <th th:text="#{articulo.precio}">Precio</th>
+                    <th th:text="#{articulo.existencias}">Existencias</th>
+                    <th th:text="#{articulo.activo}">Activo</th>
+                    <th th:text="#{accion.actualizar}">Modificar</th>
+                    <th th:text="#{accion.eliminar}">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,16 +30,16 @@
                     <td th:text="${#numbers.formatDecimal(item.precio, 3, 2)}"></td>
                     <td th:text="${item.existencias}"></td><!-- comment -->
                     <td><input type="checkbox" name="activo" th:checked="${item.activo}"disabled/></td>
-                    <td><a th:ref="@{/articulo/modificar}+${ietm.idArticulo}">Modificar</a></td>
-                    <td><a th:ref="@{/articulo/eliminar}+${ietm.idArticulo}">Eliminar</a></td>
+                    <td><a th:ref="@{/articulo/modificar}+${ietm.idArticulo}" th:text="#{accion.actualizar}">Modificar</a></td>
+                    <td><a th:ref="@{/articulo/eliminar}+${ietm.idArticulo}" th:text="#{accion.eliminar}">Eliminar</a></td>
 
                 </tr>
             </tbody>
         </table>
         </div>
         
-        <div th:if="${articulos == null or articulos.empty}">
-            La lista de articulos esta vacia
+        <div th:if="${articulos == null or articulos.empty}" th:text="#{articulo.no_mostrar}">
+            Esto se encuentra vacio..
             </div>
             </div>
         <footer th:replace="layout/plantilla :: footer" />

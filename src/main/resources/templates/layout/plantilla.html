@@ -11,7 +11,11 @@
             <h1 style="color:blue;">TechShop</h1>
         </header>
         <footer th:fragment="footer">
-            <p> &COPY; Derechos reservas 2022 </p>
+            <p>
+                &COPY; [[#{plantilla.derechos}]]
+                <a th:href="@{/(lang=es)}"> ES</a>
+                <a th:href="@{/(lang=en)}"> ES</a>
+            </p>
         </footer>
     </body>
 </html>
